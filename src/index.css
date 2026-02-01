@@ -1,26 +1,103 @@
+/* QuizStyle.css */
+
+:root {
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --bg-navy: #3a4867;
+  /* Matches your Home background */
+  --card-bg: #ffffff;
+  --text-dark: #1e293b;
+  --correct: #22c55e;
+  --wrong: #ef4444;
+}
+
+/* Apply background to the whole page */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f8;
   margin: 0;
-  padding: 0;
+  background-color: var(--bg-navy);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 550px;
+  margin: 60px auto;
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
   text-align: center;
 }
 
+h2 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.25rem;
+  color: var(--text-dark);
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+/* Option Buttons */
 button {
-  padding: 10px 20px;
-  margin: 8px;
-  border: none;
-  background-color: #2563eb;
-  color: white;
-  border-radius: 5px;
+  display: block;
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: transparent;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 16px;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  box-sizing: border-box;
+  /* Crucial for width */
 }
 
-button:hover {
-  background-color: #1e40af;
+button:hover:not(:disabled) {
+  border-color: var(--primary);
+  background-color: #f8fafc;
 }
 
-div {
-  margin-top: 40px;
+/* Answer States */
+button.correct {
+  background-color: var(--correct) !important;
+  border-color: var(--correct) !important;
+  color: white !important;
+}
+
+button.wrong {
+  background-color: var(--wrong) !important;
+  border-color: var(--wrong) !important;
+  color: white !important;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Next Button Styling */
+.next-btn {
+  margin-top: 20px;
+  background-color: var(--primary) !important;
+  color: white !important;
+  /* Changed from green to white for visibility */
+  text-align: center;
+  font-weight: 700;
+  border: none;
+}
+
+.next-btn:hover {
+  background-color: var(--primary-hover) !important;
+  transform: translateY(-2px);
 }

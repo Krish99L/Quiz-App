@@ -1,0 +1,119 @@
+/* ResultStyle.css */
+
+.result-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3a4867;
+    /* Consistent Navy Background */
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.result-card {
+    background: #ffffff;
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.icon-box {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+h1 {
+    color: #1e293b;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Score Circle Styling */
+.score-circle {
+    width: 120px;
+    height: 120px;
+    border: 6px solid #e2e8f0;
+    border-top: 6px solid #6366f1;
+    /* Brand Indigo */
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.percent {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #6366f1;
+}
+
+.label {
+    font-size: 0.8rem;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+h2 {
+    color: #475569;
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Buttons */
+.result-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.play-again-btn {
+    width: 100%;
+    padding: 16px;
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.play-again-btn:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+}
+
+.secondary-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.outline-btn {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 2px solid #e2e8f0;
+    color: #64748b;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.outline-btn:hover {
+    border-color: #6366f1;
+    color: #6366f1;
+    background: #f8fafc;
+}
+
+a {
+    text-decoration: none;
+}

@@ -1,0 +1,129 @@
+/* HistoryStyle.css */
+
+.history-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3a4867;
+    /* Your consistent Navy background */
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.history-card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 24px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 1rem;
+}
+
+.history-header h1 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin: 0;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.back-link,
+.clear-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.back-link {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.clear-btn {
+    background: #fee2e2;
+    color: #ef4444;
+    border: none;
+}
+
+.clear-btn:hover {
+    background: #fecaca;
+}
+
+/* List Styling */
+.history-list {
+    overflow-y: auto;
+    /* Allows scrolling if list is long */
+    padding-right: 10px;
+}
+
+.history-item {
+    background: #f8fafc;
+    padding: 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #e2e8f0;
+}
+
+.attempt-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.attempt-date {
+    color: #64748b;
+}
+
+.attempt-score {
+    color: #1e293b;
+}
+
+/* Mini Progress Bar */
+.progress-bar-bg {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: #6366f1;
+    /* Indigo */
+    border-radius: 4px;
+}
+
+.no-data {
+    text-align: center;
+    padding: 3rem 0;
+    color: #64748b;
+}
+
+.start-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #6366f1;
+    font-weight: 700;
+    text-decoration: none;
+}
