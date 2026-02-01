@@ -1,8 +1,98 @@
+/* QuizStyle.css */
+
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --bg-dark: #0f172a;
+    --card-bg: #ffffff;
+    --text-dark: #1e293b;
+    --text-light: #64748b;
+    --correct: #22c55e;
+    --wrong: #ef4444;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .quiz-container {
+    display: flex;
+    flex-direction: column;
     max-width: 600px;
-    margin: 60px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+/* Base style for all option buttons */
+button {
+    all: unset;
+    /* Reset default button styles */
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+button:hover:not(:disabled) {
+    border-color: var(--primary);
+    background-color: #f8fafc;
+}
+
+/* Specific classes from your logic */
+button.correct {
+    background-color: var(--correct) !important;
+    border-color: var(--correct) !important;
+    color: white !important;
+}
+
+button.wrong {
+    background-color: var(--wrong) !important;
+    border-color: var(--wrong) !important;
+    color: white !important;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+.next-btn {
+    margin-top: 20px;
+    background-color: var(--primary);
+    color: rgb(4, 212, 56);
+    text-align: center;
+    font-weight: 700;
+    border: none;
+}
+
+.next-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
 }

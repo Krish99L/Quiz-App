@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import "./QuizStyle.css";
 
 function Quiz() {
     const [questions, setQuestions] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [score, setScore] = useState(0);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [showNext, setShowNext] = useState(false);
+    const [shuffledOptions, setShuffledOptions] = useState([]);
 
     const navigate = useNavigate();
 
-    // Fetch questions when component loads
+    // Fetch questions once
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
@@ -26,46 +29,63 @@ function Quiz() {
         fetchQuestions();
     }, []);
 
-    // Show loading until questions arrive
+    // Shuffle options ONLY when question changes
+    useEffect(() => {
+        if (questions.length > 0) {
+            const currentQuestion = questions[currentIndex];
+
+            const shuffled = [
+                ...currentQuestion.incorrect_answers,
+                currentQuestion.correct_answer,
+            ].sort(() => Math.random() - 0.5);
+
+            setShuffledOptions(shuffled);
+        }
+    }, [currentIndex, questions]);
+
     if (questions.length === 0) {
         return <h2>Loading questions...</h2>;
     }
 
     const currentQuestion = questions[currentIndex];
 
-    // Combine correct + incorrect answers and shuffle
-    const options = [
-        ...currentQuestion.incorrect_answers,
-        currentQuestion.correct_answer,
-    ].sort(() => Math.random() - 0.5);
+    // Handle answer selection
+    const handleAnswer = (option) => {
+        if (selectedAnswer !== null) return;
 
-    const handleAnswer = (selectedOption) => {
-        const updatedScore =
-            selectedOption === currentQuestion.correct_answer
-                ? score + 1
-                : score;
+        setSelectedAnswer(option);
+        setShowNext(true);
 
-        setScore(updatedScore);
+        if (option === currentQuestion.correct_answer) {
+            setScore((prev) => prev + 1);
+        }
+    };
 
+    // Handle next button
+    const handleNext = () => {
         const nextQuestion = currentIndex + 1;
 
         if (nextQuestion < questions.length) {
             setCurrentIndex(nextQuestion);
+            setSelectedAnswer(null);
+            setShowNext(false);
         } else {
-            // Save attempt to LocalStorage
-            const history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+            const history =
+                JSON.parse(localStorage.getItem("quizHistory")) || [];
 
             const newAttempt = {
                 date: new Date().toLocaleString(),
-                score: updatedScore,
+                score: score,
                 total: questions.length,
             };
 
-            localStorage.setItem("quizHistory", JSON.stringify([...history, newAttempt]));
+            localStorage.setItem(
+                "quizHistory",
+                JSON.stringify([...history, newAttempt])
+            );
 
-            // Navigate to result page
             navigate("/result", {
-                state: { score: updatedScore, total: questions.length },
+                state: { score: score, total: questions.length },
             });
         }
     };
@@ -76,16 +96,40 @@ function Quiz() {
                 Question {currentIndex + 1} of {questions.length}
             </h2>
 
-            <p dangerouslySetInnerHTML={{ __html: currentQuestion.question }} />
+            <p
+                dangerouslySetInnerHTML={{
+                    __html: currentQuestion.question,
+                }}
+            />
 
-            {options.map((option, index) => (
-                <div key={index}>
+            {shuffledOptions.map((option, index) => {
+                const isCorrect =
+                    option === currentQuestion.correct_answer;
+                const isSelected = option === selectedAnswer;
+
+                let className = "";
+
+                if (selectedAnswer) {
+                    if (isCorrect) className = "correct";
+                    else if (isSelected) className = "wrong";
+                }
+
+                return (
                     <button
+                        key={index}
                         onClick={() => handleAnswer(option)}
+                        disabled={selectedAnswer !== null}
+                        className={className}
                         dangerouslySetInnerHTML={{ __html: option }}
                     />
-                </div>
-            ))}
+                );
+            })}
+
+            {showNext && (
+                <button className="next-btn" onClick={handleNext}>
+                    Next Question
+                </button>
+            )}
         </div>
     );
 }
